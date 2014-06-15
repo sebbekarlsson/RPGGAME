@@ -1,0 +1,10 @@
+package com.roleplay.instances;
+
+public class WaterTile extends Tile {
+
+	public WaterTile(int x, int y) {
+		super(x, y);
+		this.setSprite("images/tiles/water.png");
+	}
+
+}
