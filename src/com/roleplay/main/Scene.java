@@ -6,6 +6,9 @@ import java.util.List;
 
 public abstract class Scene {
     
+	public int WIDTH;
+	public int HEIGHT;
+	
     List<Instance> instances = new ArrayList<Instance>();
     
     public abstract void tick();

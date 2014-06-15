@@ -30,6 +30,8 @@ public class Game extends JFrame implements Runnable, KeyListener, MouseListener
     public static List<Scene> scenes = new ArrayList<Scene>();
     public static int sceneIndex = 0;
     
+    Camera camera = new Camera();
+    
     
     public static void main(String[] args){
         Game game = new Game();
@@ -61,6 +63,7 @@ public class Game extends JFrame implements Runnable, KeyListener, MouseListener
             instance.tick();
         }
         
+        camera.tick();
         getCurrentScene().tick();
     }
 
@@ -82,12 +85,16 @@ public class Game extends JFrame implements Runnable, KeyListener, MouseListener
         Graphics s = offscreen.getGraphics();
         s.clearRect(0, 0, RENDERSIZE.width, RENDERSIZE.height);
         
+        s.translate(camera.x, camera.y);
+        
         for(int i = 0; i < getCurrentScene().getInstances().size(); i++){
             Instance instance = getCurrentScene().getInstances().get(i);
             instance.draw(s);
         }
         
         getCurrentScene().draw(s);
+        
+        s.translate(-camera.x, -camera.y);
         
         g.drawImage(offscreen.getScaledInstance(FRAMESIZE.width, FRAMESIZE.height, 1), 0, 0, this);
         
