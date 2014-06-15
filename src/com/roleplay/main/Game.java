@@ -113,7 +113,7 @@ public class Game extends JFrame implements Runnable, KeyListener, MouseListener
 		gameLoop.start();
 	}
 
-	public Scene getCurrentScene(){
+	public static Scene getCurrentScene(){
 		return scenes.get(sceneIndex);
 	}
 
