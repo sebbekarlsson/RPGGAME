@@ -1,3 +1,11 @@
+# Netbeans
+/bin/
+/dist/
+/nbproject/
+
+/build.xml
+/manifest.mf
+
 #################
 ## Eclipse
 #################
