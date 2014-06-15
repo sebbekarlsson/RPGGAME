@@ -9,8 +9,8 @@ public class Player extends Instance {
         this.setSprite("images/hamburger.png");
     }
     
-        @Override
-    public void tick(){
+    @Override
+    public void tick() {
         x += 2;
     }
 
