@@ -32,6 +32,11 @@ public class Game extends JFrame implements Runnable, KeyListener, MouseListener
     
     Camera camera = new Camera();
     
+    public static boolean vk_up = false;
+    public static boolean vk_down = false;
+    public static boolean vk_left = false;
+    public static boolean vk_right = false;
+    
     
     public static void main(String[] args){
         Game game = new Game();
@@ -126,8 +131,44 @@ public class Game extends JFrame implements Runnable, KeyListener, MouseListener
     public void keyTyped(KeyEvent e) { }
 
    
-    public void keyPressed(KeyEvent e) { }
+    public void keyPressed(KeyEvent e) {
+    	if(e.getKeyCode() == KeyEvent.VK_UP){
+    		vk_up = true;
+    	}
+    	
+    	if(e.getKeyCode() == KeyEvent.VK_DOWN){
+    		vk_down = true;
+    	}
+    	
+    	if(e.getKeyCode() == KeyEvent.VK_LEFT){
+    		vk_left = true;
+    	}
+    	
+    	if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+    		vk_right = true;
+    	}
+    	
+    	
+    }
 
    
-    public void keyReleased(KeyEvent e) { }
+    public void keyReleased(KeyEvent e) {
+    	
+     	if(e.getKeyCode() == KeyEvent.VK_UP){
+    		vk_up = false;
+    	}
+    	
+    	if(e.getKeyCode() == KeyEvent.VK_DOWN){
+    		vk_down = false;
+    	}
+    	
+    	if(e.getKeyCode() == KeyEvent.VK_LEFT){
+    		vk_left = false;
+    	}
+    	
+    	if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+    		vk_right = false;
+    	}
+    	
+    }
 }
