@@ -8,7 +8,6 @@ public class Camera {
 	
 	public void tick(){
 		x = -WorldScene.player.x+Game.RENDERSIZE.width/2;
-		
 		y = -WorldScene.player.y+Game.RENDERSIZE.height/2;
 	}
 
