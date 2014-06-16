@@ -21,14 +21,7 @@ public class MapLoader {
 		
 		BufferedImage buffered = toBufferedImage(map);
 		
-		/*int scaleX = (int) (map.getWidth(null));
-		int scaleY = (int) (map.getHeight(null));
-		Image image = map;
-		BufferedImage buffered = new BufferedImage(scaleX, scaleY, BufferedImage.TYPE_INT_RGB);
-		buffered.getGraphics().drawImage(image, 0, 0 , null);*/
-		
-		
-
+	                
 		int w = width/16;
 		int h = height/16;
 		int[][] pixels = new int[w][h];
