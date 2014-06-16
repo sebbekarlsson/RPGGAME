@@ -30,8 +30,13 @@ public class Player extends Instance {
         	this.setSprite("images/player/player_left.png");
         }
         
-       //We need to make it so that the player wont be able to walk through trees. help?
+        if(Game.vk_right){
+        	x += speed;
+        	this.setSprite("images/player/player_left.png");
+        }
         
+       
+        //we need something that prevents the player from moving through trees. help?
         
        
       
