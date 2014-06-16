@@ -13,6 +13,7 @@ public abstract class Scene {
     
     public abstract void tick();
     public abstract void draw(Graphics g);
+    public abstract void drawGUI(Graphics g);
     
     public void instantiate(Instance instance) {
         instances.add(instance);

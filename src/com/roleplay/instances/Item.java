@@ -1,12 +1,12 @@
 package com.roleplay.instances;
 
+import com.roleplay.main.Instance;
 
+public class Item extends Instance {
 
-public class Tree extends Obstacle {
-
-	public Tree(int x, int y) {
+	public Item(int x, int y) {
 		super(x, y);
-		this.setSprite("images/tree.png");
+		
 	}
 
 	@Override

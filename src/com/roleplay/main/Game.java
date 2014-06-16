@@ -36,6 +36,9 @@ public class Game extends JFrame implements Runnable, KeyListener, MouseListener
 	public static boolean vk_down = false;
 	public static boolean vk_left = false;
 	public static boolean vk_right = false;
+	public static boolean vk_i = false;
+	public static boolean vk_e = false;
+	public static boolean vk_q = false;
 
 
 	public static void main(String[] args){
@@ -88,7 +91,10 @@ public class Game extends JFrame implements Runnable, KeyListener, MouseListener
 	@Override
 	public void paint(Graphics g){
 
+		
+		
 		Graphics s = offscreen.getGraphics();
+		Graphics GUI = offscreen.getGraphics();
 		s.clearRect(0, 0, RENDERSIZE.width, RENDERSIZE.height);
 
 		s.translate(camera.x, camera.y);
@@ -103,6 +109,8 @@ public class Game extends JFrame implements Runnable, KeyListener, MouseListener
 		getCurrentScene().draw(s);
 
 		s.translate(-camera.x, -camera.y);
+		
+		getCurrentScene().drawGUI(GUI);
 
 		g.drawImage(offscreen.getScaledInstance(FRAMESIZE.width, FRAMESIZE.height, 1), 0, 0, this);
 
@@ -150,6 +158,19 @@ public class Game extends JFrame implements Runnable, KeyListener, MouseListener
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
 			vk_right = true;
 		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_I){
+			vk_i = true;
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_E){
+			vk_e = true;
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_Q){
+			vk_q = true;
+		}
+
 
 
 	}
@@ -172,6 +193,19 @@ public class Game extends JFrame implements Runnable, KeyListener, MouseListener
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
 			vk_right = false;
 		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_I){
+			vk_i = false;
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_E){
+			vk_e = false;
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_Q){
+			vk_q = false;
+		}
+
 
 	}
 }
