@@ -7,12 +7,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.io.IOException;
 
+import com.roleplay.creatures.Sheep;
 import com.roleplay.instances.GrassTile;
 import com.roleplay.instances.Item;
 import com.roleplay.instances.Player;
 import com.roleplay.instances.Tile;
 import com.roleplay.items.Meat;
 import com.roleplay.items.Mushroom;
+import com.roleplay.items.Rock;
 import com.roleplay.main.Game;
 import com.roleplay.main.Instance;
 import com.roleplay.main.MapLoader;
@@ -39,39 +41,12 @@ public class WorldScene extends Scene {
 		this.HEIGHT = 3000;
 
 
-		for(int i = 0; i < WIDTH/16; i ++){
-			for(int ii = 0; ii < HEIGHT/16; ii++){
-				Tile tile = new GrassTile(i*16, ii*16);
-
-
-
-				this.instantiate(tile);
-
-
-
-
-			}
-		}
+		
 
 
 
 
 
-
-		for(int i = 0; i < WIDTH/16; i ++){
-			for(int ii = 0; ii < HEIGHT/16; ii++){
-
-				if(MathHandler.random.nextInt(300) == 0){
-					this.instantiate(new Meat(i*16,ii*16));
-				}
-				
-				if(MathHandler.random.nextInt(100) == 0){
-					this.instantiate(new Mushroom(i*16,ii*16));
-				}
-
-
-			}
-		}
 
 
 
@@ -92,6 +67,12 @@ public class WorldScene extends Scene {
 				e.printStackTrace();
 			}
 
+			
+
+			
+			
+			
+			
 			created = true;
 		}
 

@@ -9,10 +9,15 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import com.roleplay.instances.GrassTile;
 import com.roleplay.instances.Player;
 import com.roleplay.instances.SandTile;
+import com.roleplay.instances.Tile;
 import com.roleplay.instances.Tree;
 import com.roleplay.instances.WaterTile;
+import com.roleplay.items.Meat;
+import com.roleplay.items.Mushroom;
+import com.roleplay.items.Rock;
 
 
 public class MapLoader {
@@ -27,6 +32,32 @@ public class MapLoader {
 		int w = width/16;
 		int h = height/16;
 		int[][] pixels = new int[w][h];
+		
+		//grass
+		for(int i = 0; i < Game.getCurrentScene().WIDTH/16; i ++){
+			for(int ii = 0; ii < Game.getCurrentScene().HEIGHT/16; ii++){
+				Tile tile = new GrassTile(i*16, ii*16);
+
+
+
+				Game.getCurrentScene().instantiate(tile);
+				
+				if(MathHandler.random.nextInt(1000) ==0){
+					Game.getCurrentScene().instantiate(new Meat(i*16,ii*16));
+				}
+				
+				if(MathHandler.random.nextInt(200) ==0){
+					Game.getCurrentScene().instantiate(new Mushroom(i*16,ii*16));
+				}
+				
+				if(MathHandler.random.nextInt(350) ==0){
+					Game.getCurrentScene().instantiate(new Rock(i*16,ii*16));
+				}
+
+
+
+			}
+		}
 
 		
 		//BOTTOM LAYER
@@ -39,11 +70,15 @@ public class MapLoader {
 				int r = c.getRed();
 				
 				
+				
 				if(r == 0 && g == 255 && b == 255){
 					Game.getCurrentScene().instantiate(new WaterTile(i*16,j*16));
 				}
 				else if(r == 255 && g == 237 && b == 197){
 					Game.getCurrentScene().instantiate(new SandTile(i*16,j*16));
+					if(MathHandler.random.nextInt(10) ==0){
+						Game.getCurrentScene().instantiate(new Rock(i*16,j*16));
+					}
 				}
 				
 				
