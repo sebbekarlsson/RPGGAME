@@ -4,6 +4,8 @@ import com.roleplay.main.Instance;
 
 public class Item extends Instance {
 
+	public String displayName = "";
+	
 	public Item(int x, int y) {
 		super(x, y);
 		
@@ -13,6 +15,14 @@ public class Item extends Instance {
 	public void tick() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void use(){
+		
+	}
+	
+	public void setDisplayName(String name){
+		this.displayName = name;
 	}
 
 }

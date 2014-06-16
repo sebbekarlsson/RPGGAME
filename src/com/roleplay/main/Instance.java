@@ -7,6 +7,7 @@ public abstract class Instance {
 
 	public int x, y;
 	public Image sprite;
+	
 
 	public Instance(int x, int y){
 		this.x = x;
@@ -30,6 +31,8 @@ public abstract class Instance {
 			this.sprite =  ResLoader.loadImage(imagePath);
 		}
 	}
+	
+	
 	
 	public boolean isOutsideView(){
 		return x < -Game.camera.x-100 || x > -Game.camera.x+Game.RENDERSIZE.width+100 || y < -Game.camera.y-100 || y > -Game.camera.y+Game.RENDERSIZE.height+100;

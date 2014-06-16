@@ -8,6 +8,7 @@ import com.roleplay.main.Inventory;
 
 public class Player extends Instance {
 
+	public static int xx,yy;
 	public int speed = 2;
 	public static Inventory inventory = new Inventory(20);
 	//press '[ i ]' ingame to open inventory
@@ -21,12 +22,14 @@ public class Player extends Instance {
 		inventory.add(new TestItem(120,120));
 		inventory.add(new TestItem(120,120));
 		inventory.add(new TestItem(120,120));
-		
-		
+
+
 	}
 
 	@Override
 	public void tick() {
+		xx = x;
+		yy = y;
 		if(Game.vk_down){
 			y += speed;
 			this.setSprite("images/player/player_down.png");
@@ -67,16 +70,16 @@ public class Player extends Instance {
 
 					}
 				}
-				
-				
+
+
 				if(x >= instance.x && x <= instance.x+instance.sprite.getWidth(null) && y >= instance.y-instance.sprite.getHeight(null)-1 && y <= instance.y+(instance.sprite.getHeight(null)/2)){
 					if(Game.vk_down){
 						y -= speed;
 
 					}
 				}
-				
-				
+
+
 				if(x >= instance.x && x <= instance.x+instance.sprite.getWidth(null) && y >= instance.y+(instance.sprite.getHeight(null)/2) && y <= instance.y+instance.sprite.getHeight(null)+1){
 					if(Game.vk_up){
 						y += speed;
@@ -84,9 +87,37 @@ public class Player extends Instance {
 					}
 				}
 			}
+			else if(instance instanceof Item){
+				Item item = (Item) instance;
+
+
+				if(instance.x >= x && instance.x <= x+sprite.getWidth(null) && instance.y >= y && instance.y <= y+sprite.getHeight(null)){
+					if(Game.vk_enter){
+						if(!inventory.isFull()){
+							inventory.add(item);
+							Game.getCurrentScene().destroy(instance);
+
+						}
+
+						Game.vk_enter = false;
+					}
+				}
+
+
+
+
+			}
 		}
 
 
+	}
+	
+	public static int getX(){
+		return xx;
+	}
+	
+	public static int getY(){
+		return yy;
 	}
 
 }

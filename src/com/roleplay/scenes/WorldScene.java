@@ -11,8 +11,11 @@ import com.roleplay.instances.GrassTile;
 import com.roleplay.instances.Item;
 import com.roleplay.instances.Player;
 import com.roleplay.instances.Tile;
+import com.roleplay.items.TestItem;
 import com.roleplay.main.Game;
+import com.roleplay.main.Instance;
 import com.roleplay.main.MapLoader;
+import com.roleplay.main.MathHandler;
 import com.roleplay.main.ResLoader;
 import com.roleplay.main.Scene;
 
@@ -22,10 +25,12 @@ public class WorldScene extends Scene {
 	MapLoader maploader = new MapLoader();
 	boolean created = false;
 
+
 	public boolean drawInventory = false;
 	int slotx = 0;
 	int sloty = Game.RENDERSIZE.height/2;
 	int markerx = (Game.RENDERSIZE.width/2-16*20/2);
+	Item markedItem;
 
 
 	public WorldScene() {
@@ -52,16 +57,16 @@ public class WorldScene extends Scene {
 
 
 
-		/*for(int i = 0; i < WIDTH/16; i ++){
+		for(int i = 0; i < WIDTH/16; i ++){
 			for(int ii = 0; ii < HEIGHT/16; ii++){
 
 					if(MathHandler.random.nextInt(100) == 0){
-						this.instantiate(new Tree(i*16,ii*16));
+						this.instantiate(new TestItem(i*16,ii*16));
 					}
 
 
 			}
-		}*/
+		}
 
 
 
@@ -69,6 +74,11 @@ public class WorldScene extends Scene {
 
 	@Override
 	public void tick() { 
+		if(Player.inventory.getItems().size() > 0){
+			if(markerx-(Game.RENDERSIZE.width/2-16*20/2) < Player.inventory.getItems().size()*16){
+				markedItem = Player.inventory.getItems().get(((markerx)-(Game.RENDERSIZE.width/2-16*20/2))/16);
+			}
+		}
 		if(created == false){
 			try {
 				maploader.loadMap("images/map.png", 3000, 3000);
@@ -106,6 +116,15 @@ public class WorldScene extends Scene {
 			System.out.println(markerx);
 			Game.vk_e = false;
 		}
+
+		if(Game.vk_r){
+			if(markedItem != null){
+				markedItem.use();
+				markedItem = null;
+
+				Game.vk_r = false;
+			}
+		}
 	}
 
 
@@ -115,8 +134,21 @@ public class WorldScene extends Scene {
 	@Override
 	public void drawGUI(Graphics g) {
 
-		g.drawImage(ResLoader.loadImage("images/gui/slot.png"), 8, Game.RENDERSIZE.height-23, null);
+		g.setColor(Color.white);
+		g.setFont(new Font(Font.SERIF,12,12));
 
+		g.drawImage(ResLoader.loadImage("images/gui/slot.png"), 8, Game.RENDERSIZE.height-23, null);
+		g.drawString(Player.inventory.getItems().size() + " / "+ Player.inventory.slots, 32, Game.RENDERSIZE.height-8);
+		
+		if(Player.inventory.getItems().size() > 0){
+			if(markerx-(Game.RENDERSIZE.width/2-16*20/2) < Player.inventory.getItems().size()*16){
+
+				Item markedItem = Player.inventory.getItems().get(((markerx)-(Game.RENDERSIZE.width/2-16*20/2))/16);
+				if(markedItem != null){
+					g.drawImage(markedItem.sprite,8,Game.RENDERSIZE.height-23,null);
+				}
+			}
+		}
 		if(drawInventory == true){
 			Graphics2D g2 = (Graphics2D) g;
 			g2.setComposite(AlphaComposite.SrcOver.derive(0.8f));
@@ -126,7 +158,9 @@ public class WorldScene extends Scene {
 
 			g2.setColor(Color.white);
 			g2.setFont(new Font(Font.SERIF,20,20));
-			g2.drawString("Inventory", Game.RENDERSIZE.width/2-36, Game.RENDERSIZE.height/2-32);
+			g2.drawString("Inventory", Game.RENDERSIZE.width/2-36, Game.RENDERSIZE.height/2-64);
+			g2.setFont(new Font(Font.SERIF,16,16));
+			g2.drawString("'E' & 'Q' to scroll", Game.RENDERSIZE.width/2-52, Game.RENDERSIZE.height/2+64);
 			for(int i = 0; i < Player.inventory.slots; i ++){
 				slotx = i*16;
 
@@ -152,8 +186,24 @@ public class WorldScene extends Scene {
 			g.drawImage(ResLoader.loadImage("images/gui/marker.png"), markerx, sloty, null);
 
 
+		}else{
+			g.setColor(Color.white);
+			g.setFont(new Font(Font.SERIF,20,20));
+			
+			for(int i = 0; i < Game.getCurrentScene().getInstances().size(); i++){
+				Instance instance = Game.getCurrentScene().getInstances().get(i);
+				if(instance instanceof Item){
+					if(instance.x >= Player.getX() && instance.x+32 <= Player.getX()+32 && instance.y >= Player.getY() && instance.y <= Player.getY()+32){
+						Item item = (Item) instance;
+						g.drawString(item.displayName + " - Press enter to pickup", Game.RENDERSIZE.width/2-124, Game.RENDERSIZE.height/2);
+					}
+				}
+			}
+			
 		}
 	}
+	
+	
 }
 
 
