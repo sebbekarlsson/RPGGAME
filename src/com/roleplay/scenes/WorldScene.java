@@ -4,17 +4,16 @@ import java.awt.Graphics;
 import java.io.IOException;
 
 import com.roleplay.instances.GrassTile;
-import com.roleplay.instances.Player;
-import com.roleplay.instances.SandTile;
+
 import com.roleplay.instances.Tile;
-import com.roleplay.instances.Tree;
+
 import com.roleplay.main.MapLoader;
-import com.roleplay.main.MathHandler;
+
 import com.roleplay.main.Scene;
 
 public class WorldScene extends Scene {
 
-	public static Player player = new Player(120,120);
+	
 	MapLoader maploader = new MapLoader();
 	boolean created = false;
 
@@ -67,7 +66,7 @@ public class WorldScene extends Scene {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			this.instantiate(player);
+			
 			created = true;
 		}
 	}

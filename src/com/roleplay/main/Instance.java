@@ -34,4 +34,6 @@ public abstract class Instance {
 	public boolean isOutsideView(){
 		return x < -Game.camera.x-100 || x > -Game.camera.x+Game.RENDERSIZE.width+100 || y < -Game.camera.y-100 || y > -Game.camera.y+Game.RENDERSIZE.height+100;
 	}
+	
+	
 }

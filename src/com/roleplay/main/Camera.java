@@ -1,14 +1,22 @@
 package com.roleplay.main;
 
-import com.roleplay.scenes.WorldScene;
+import com.roleplay.instances.Player;
+
 
 public class Camera {
 	
 	public int x,	y;
 	
 	public void tick(){
-		x = -WorldScene.player.x+Game.RENDERSIZE.width/2;
-		y = -WorldScene.player.y+Game.RENDERSIZE.height/2;
+		
+		
+		for(int i = 0; i < Game.getCurrentScene().getInstances().size(); i++){
+			Instance instance = Game.getCurrentScene().getInstances().get(i);
+			if(instance instanceof Player){
+				x = -instance.x+Game.RENDERSIZE.width/2;
+				y = -instance.y+Game.RENDERSIZE.height/2;
+			}
+		}
 	}
 
 }

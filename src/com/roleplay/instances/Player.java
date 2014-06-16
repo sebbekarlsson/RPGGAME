@@ -2,6 +2,7 @@ package com.roleplay.instances;
 
 import com.roleplay.main.Game;
 import com.roleplay.main.Instance;
+import com.roleplay.instances.Tree;
 
 public class Player extends Instance {
 
@@ -29,10 +30,10 @@ public class Player extends Instance {
         	this.setSprite("images/player/player_left.png");
         }
         
-        if(Game.vk_right){
-        	x += speed;
-        	this.setSprite("images/player/player_right.png");
-        }
+       //We need to make it so that the player wont be able to walk through trees. help?
+        
+        
+       
       
     }
 
