@@ -7,18 +7,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.io.IOException;
 
-import com.roleplay.creatures.Sheep;
-import com.roleplay.instances.GrassTile;
+
 import com.roleplay.instances.Item;
 import com.roleplay.instances.Player;
-import com.roleplay.instances.Tile;
-import com.roleplay.items.Meat;
-import com.roleplay.items.Mushroom;
-import com.roleplay.items.Rock;
+
 import com.roleplay.main.Game;
 import com.roleplay.main.Instance;
 import com.roleplay.main.MapLoader;
-import com.roleplay.main.MathHandler;
+
 import com.roleplay.main.ResLoader;
 import com.roleplay.main.Scene;
 

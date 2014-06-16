@@ -2,9 +2,7 @@ package com.roleplay.creatures;
 
 import java.awt.Point;
 
-import com.roleplay.instances.Item;
-import com.roleplay.instances.Obstacle;
-import com.roleplay.instances.WaterTile;
+
 import com.roleplay.main.Game;
 import com.roleplay.main.Instance;
 import com.roleplay.main.MathHandler;

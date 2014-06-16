@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import com.roleplay.instances.GrassTile;
+import com.roleplay.instances.Home;
 import com.roleplay.instances.Player;
 import com.roleplay.instances.SandTile;
 import com.roleplay.instances.Tile;
@@ -18,6 +19,7 @@ import com.roleplay.instances.WaterTile;
 import com.roleplay.items.Meat;
 import com.roleplay.items.Mushroom;
 import com.roleplay.items.Rock;
+
 
 
 public class MapLoader {
@@ -53,6 +55,8 @@ public class MapLoader {
 				if(MathHandler.random.nextInt(350) ==0){
 					Game.getCurrentScene().instantiate(new Rock(i*16,ii*16));
 				}
+				
+				
 
 
 
@@ -84,6 +88,8 @@ public class MapLoader {
 				
 				
 				
+				
+				
 			}
 		}
 		
@@ -107,6 +113,12 @@ public class MapLoader {
 					
 					Game.getCurrentScene().instantiate(new Player(i*16,j*16));
 				}
+				
+				else if(r == 101 && g == 255 && b == 0){
+					
+					Game.getCurrentScene().instantiate(new Home(i*16,j*16));
+				}
+				
 				
 				
 				

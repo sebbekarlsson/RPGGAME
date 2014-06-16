@@ -1,6 +1,6 @@
 package com.roleplay.instances;
 
-import com.roleplay.items.TestItem;
+
 import com.roleplay.main.Game;
 import com.roleplay.main.Instance;
 import com.roleplay.main.Inventory;
@@ -11,6 +11,7 @@ public class Player extends Instance {
 	public static int xx,yy;
 	public int speed = 2;
 	public static Inventory inventory = new Inventory(20);
+	public static String direction = "down";
 	//press '[ i ]' ingame to open inventory
 
 	public Player(int x, int y) {
@@ -27,21 +28,25 @@ public class Player extends Instance {
 		yy = y;
 		if(Game.vk_down){
 			y += speed;
+			direction = "down";
 			this.setSprite("images/player/player_down.png");
 		}
 
 		if(Game.vk_up){
 			y -= speed;
+			direction = "up";
 			this.setSprite("images/player/player_up.png");
 		}
 
 		if(Game.vk_left){
 			x -= speed;
+			direction = "left";
 			this.setSprite("images/player/player_left.png");
 		}
 
 		if(Game.vk_right){
 			x += speed;
+			direction = "right";
 			this.setSprite("images/player/player_right.png");
 		}
 
