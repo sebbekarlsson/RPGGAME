@@ -16,12 +16,7 @@ public class Player extends Instance {
 	public Player(int x, int y) {
 		super(x, y);
 		this.setSprite("images/player/player_down.png");
-		inventory.add(new TestItem(120,120));
-		inventory.add(new TestItem(120,120));
-		inventory.add(new TestItem(120,120));
-		inventory.add(new TestItem(120,120));
-		inventory.add(new TestItem(120,120));
-		inventory.add(new TestItem(120,120));
+		
 
 
 	}

@@ -11,7 +11,8 @@ import com.roleplay.instances.GrassTile;
 import com.roleplay.instances.Item;
 import com.roleplay.instances.Player;
 import com.roleplay.instances.Tile;
-import com.roleplay.items.TestItem;
+import com.roleplay.items.Meat;
+import com.roleplay.items.Mushroom;
 import com.roleplay.main.Game;
 import com.roleplay.main.Instance;
 import com.roleplay.main.MapLoader;
@@ -60,9 +61,13 @@ public class WorldScene extends Scene {
 		for(int i = 0; i < WIDTH/16; i ++){
 			for(int ii = 0; ii < HEIGHT/16; ii++){
 
-					if(MathHandler.random.nextInt(100) == 0){
-						this.instantiate(new TestItem(i*16,ii*16));
-					}
+				if(MathHandler.random.nextInt(300) == 0){
+					this.instantiate(new Meat(i*16,ii*16));
+				}
+				
+				if(MathHandler.random.nextInt(100) == 0){
+					this.instantiate(new Mushroom(i*16,ii*16));
+				}
 
 
 			}
@@ -125,6 +130,19 @@ public class WorldScene extends Scene {
 				Game.vk_r = false;
 			}
 		}
+
+
+		if(Game.vk_d){
+			if(markedItem != null){
+				markedItem.x = Player.getX();
+				markedItem.y = Player.getY();
+				Game.getCurrentScene().instantiate(markedItem);
+				Player.inventory.trash(markedItem);
+				markedItem = null;
+
+				Game.vk_d = false;
+			}
+		}
 	}
 
 
@@ -139,7 +157,7 @@ public class WorldScene extends Scene {
 
 		g.drawImage(ResLoader.loadImage("images/gui/slot.png"), 8, Game.RENDERSIZE.height-23, null);
 		g.drawString(Player.inventory.getItems().size() + " / "+ Player.inventory.slots, 32, Game.RENDERSIZE.height-8);
-		
+
 		if(Player.inventory.getItems().size() > 0){
 			if(markerx-(Game.RENDERSIZE.width/2-16*20/2) < Player.inventory.getItems().size()*16){
 
@@ -189,21 +207,26 @@ public class WorldScene extends Scene {
 		}else{
 			g.setColor(Color.white);
 			g.setFont(new Font(Font.SERIF,20,20));
-			
+
 			for(int i = 0; i < Game.getCurrentScene().getInstances().size(); i++){
 				Instance instance = Game.getCurrentScene().getInstances().get(i);
 				if(instance instanceof Item){
-					if(instance.x >= Player.getX() && instance.x+32 <= Player.getX()+32 && instance.y >= Player.getY() && instance.y <= Player.getY()+32){
+					if(Player.getX()+16 >= instance.x && Player.getX() <= instance.x+instance.sprite.getWidth(null) && Player.getY()+16 >= instance.y && Player.getY() <= instance.y+instance.sprite.getHeight(null)){
 						Item item = (Item) instance;
-						g.drawString(item.displayName + " - Press enter to pickup", Game.RENDERSIZE.width/2-124, Game.RENDERSIZE.height/2);
+						g.setColor(Color.BLUE);
+						g.drawString(item.displayName, Game.RENDERSIZE.width/2-42, Game.RENDERSIZE.height/2-42);
+						g.setColor(Color.WHITE);
+						g.setFont(new Font(Font.SERIF,12,12));
+						g.drawString("Press enter to pickup", Game.RENDERSIZE.width/2-48, Game.RENDERSIZE.height/2-22);
+						g.drawRect(Game.RENDERSIZE.width/2-52, Game.RENDERSIZE.height/2-72, 116, 64);
 					}
 				}
 			}
-			
+
 		}
 	}
-	
-	
+
+
 }
 
 
