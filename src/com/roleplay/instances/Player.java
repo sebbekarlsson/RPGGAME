@@ -1,6 +1,8 @@
 package com.roleplay.instances;
 
 
+import java.awt.Graphics;
+
 import com.roleplay.main.Game;
 import com.roleplay.main.Instance;
 import com.roleplay.main.Inventory;
@@ -12,12 +14,13 @@ public class Player extends Instance {
 	public int speed = 2;
 	public static Inventory inventory = new Inventory(20);
 	public static String direction = "down";
+	public static boolean canMove = true;
 	//press '[ i ]' ingame to open inventory
 
 	public Player(int x, int y) {
 		super(x, y);
 		this.setSprite("images/player/player_down.png");
-		
+
 
 
 	}
@@ -26,29 +29,34 @@ public class Player extends Instance {
 	public void tick() {
 		xx = x;
 		yy = y;
-		if(Game.vk_down){
-			y += speed;
-			direction = "down";
-			this.setSprite("images/player/player_down.png");
-		}
+		if(canMove){
+			if(Game.vk_down){
+				y += speed;
+				direction = "down";
+				this.setSprite("images/player/player_down.png");
+			}
 
-		if(Game.vk_up){
-			y -= speed;
-			direction = "up";
-			this.setSprite("images/player/player_up.png");
-		}
+			if(Game.vk_up){
+				y -= speed;
+				direction = "up";
+				this.setSprite("images/player/player_up.png");
+			}
 
-		if(Game.vk_left){
-			x -= speed;
-			direction = "left";
-			this.setSprite("images/player/player_left.png");
-		}
+			if(Game.vk_left){
+				x -= speed;
+				direction = "left";
+				this.setSprite("images/player/player_left.png");
+			}
 
-		if(Game.vk_right){
-			x += speed;
-			direction = "right";
-			this.setSprite("images/player/player_right.png");
+			if(Game.vk_right){
+				x += speed;
+				direction = "right";
+				this.setSprite("images/player/player_right.png");
+			}
+
 		}
+		
+		
 
 
 		//we need something better that prevents the player from moving through trees & other obstacles. help?
@@ -112,10 +120,15 @@ public class Player extends Instance {
 
 	}
 	
+	public void draw(Graphics g){
+		drawDefaultSprite(g);
+		g.drawString("X: "+x+" Y:"+y, x, y-32);
+	}
+
 	public static int getX(){
 		return xx;
 	}
-	
+
 	public static int getY(){
 		return yy;
 	}

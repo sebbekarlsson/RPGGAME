@@ -1,6 +1,10 @@
 package com.roleplay.main;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Point;
+import java.util.List;
 
 public class Npc extends Instance {
 
@@ -12,6 +16,7 @@ public class Npc extends Instance {
 	protected String rightSprite;
 	protected String upSprite;
 	protected String downSprite;
+	protected String name = "";
 	
 	public Npc(int x, int y) {
 		super(x, y);
@@ -49,6 +54,14 @@ public class Npc extends Instance {
 		
 	}
 	
+	public void draw(Graphics g){
+		g.setFont(new Font(Font.SERIF,12,12));
+		g.setColor(Color.WHITE);
+		g.drawString(name, x-4, y-8);
+		
+		drawDefaultSprite(g);
+	}
+	
 	public void wander(){
 		this.wander = true;
 	}
@@ -59,6 +72,11 @@ public class Npc extends Instance {
 	
 	public boolean isWandering(){
 		return this.wander;
+	}
+	
+	public void talk(List<String> talks){
+		
+		Game.getCurrentScene().getDialogBox().setMessages(talks);
 	}
 	
 

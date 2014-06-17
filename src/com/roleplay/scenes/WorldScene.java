@@ -6,17 +6,17 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.io.IOException;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import com.roleplay.instances.Item;
 import com.roleplay.instances.Player;
-
 import com.roleplay.main.Game;
 import com.roleplay.main.Instance;
 import com.roleplay.main.MapLoader;
-
 import com.roleplay.main.ResLoader;
 import com.roleplay.main.Scene;
+import com.roleplay.npcs.Tane;
 
 public class WorldScene extends Scene {
 
@@ -50,6 +50,8 @@ public class WorldScene extends Scene {
 
 	@Override
 	public void tick() { 
+		
+		this.dialog.tick();
 		if(Player.inventory.getItems().size() > 0){
 			if(markerx-(Game.RENDERSIZE.width/2-16*20/2) < Player.inventory.getItems().size()*16){
 				markedItem = Player.inventory.getItems().get(((markerx)-(Game.RENDERSIZE.width/2-16*20/2))/16);
@@ -64,7 +66,10 @@ public class WorldScene extends Scene {
 			}
 
 			
-
+			
+			
+			
+			Game.getCurrentScene().instantiate(new Tane(2554,2426));
 			
 			
 			
@@ -129,6 +134,9 @@ public class WorldScene extends Scene {
 	@Override
 	public void drawGUI(Graphics g) {
 
+		
+		this.dialog.drawGUI(g);
+		
 		g.setColor(Color.white);
 		g.setFont(new Font(Font.SERIF,12,12));
 

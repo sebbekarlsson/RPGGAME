@@ -11,6 +11,8 @@ public abstract class Scene {
 	
     List<Instance> instances = new ArrayList<Instance>();
     
+    public DialogBox dialog = new DialogBox();
+    
     public abstract void tick();
     public abstract void draw(Graphics g);
     public abstract void drawGUI(Graphics g);
@@ -25,5 +27,9 @@ public abstract class Scene {
     
     public List<Instance> getInstances(){
         return this.instances;
+    }
+    
+    public DialogBox getDialogBox(){
+    	return this.dialog;
     }
 }

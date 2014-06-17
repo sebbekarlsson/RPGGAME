@@ -1,5 +1,6 @@
 package com.roleplay.items;
 
+import com.roleplay.creatures.Sheep;
 import com.roleplay.instances.Item;
 import com.roleplay.instances.Player;
 import com.roleplay.main.Game;
@@ -12,7 +13,7 @@ public class Rock extends Item {
 	boolean goDown = false;
 	boolean goUp = false;
 	
-	double speed = 6;
+	public double speed = 6;
 	
 	public Rock(int x, int y) {
 		super(x, y);
@@ -25,30 +26,40 @@ public class Rock extends Item {
 			x -= speed;
 			if(speed > 0){
 				speed -= 0.1;
+			}else{
+				goLeft = false;
+				speed = 6;
 			}
 		}
 		if(goRight){
 			x += speed;
 			if(speed > 0){
 				speed -= 0.1;
+			}else{
+				goRight = false;
+				speed = 6;
 			}
 		}
 		if(goDown){
 			y += speed;
 			if(speed > 0){
 				speed -= 0.1;
+			}else{
+				goDown = false;
+				speed = 6;
 			}
 		}
 		if(goUp){
 			y -= speed;
 			if(speed > 0){
 				speed -= 0.1;
+			}else{
+				goUp = false;
+				speed = 6;
 			}
 		}
 		
-		if(speed < 0){
-			speed = 0;
-		}
+		
 	}
 	
 	public void use(){
@@ -71,6 +82,7 @@ public class Rock extends Item {
 			Game.getCurrentScene().instantiate(this);
 		}
 		
+		Sheep.rock = this;
 		Player.inventory.trash(this);
 	}
 

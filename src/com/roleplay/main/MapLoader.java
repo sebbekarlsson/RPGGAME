@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import com.roleplay.creatures.Sheep;
 import com.roleplay.instances.GrassTile;
 import com.roleplay.instances.Home;
 import com.roleplay.instances.Player;
@@ -44,9 +45,6 @@ public class MapLoader {
 
 				Game.getCurrentScene().instantiate(tile);
 				
-				if(MathHandler.random.nextInt(1000) ==0){
-					Game.getCurrentScene().instantiate(new Meat(i*16,ii*16));
-				}
 				
 				if(MathHandler.random.nextInt(200) ==0){
 					Game.getCurrentScene().instantiate(new Mushroom(i*16,ii*16));
@@ -117,6 +115,10 @@ public class MapLoader {
 				else if(r == 101 && g == 255 && b == 0){
 					
 					Game.getCurrentScene().instantiate(new Home(i*16,j*16));
+				}
+				
+				if(MathHandler.random.nextInt(200) == 0){
+					Game.getCurrentScene().instantiate(new Sheep(i*16,j*16));
 				}
 				
 				
